@@ -9,7 +9,7 @@ class TasksPage extends Component {
         super(props);
         this.state = {
             showNewCardForm: false,
-            tite: '',
+            title: '',
             description: '',
         }
     }
@@ -50,47 +50,47 @@ class TasksPage extends Component {
 
 
     renderTaskList(){
-        const { tasks } = this.props;
+        const {onStatusChange, tasks } = this.props;
         return TASK_STATUSES.map(status => {
             const statusTasks = tasks.filter(task => task.status === status);
             return <TaskList 
             key={status} 
             status={status}
-            tasks ={statusTasks}   />
+            tasks ={statusTasks} 
+            onStatusChange = {onStatusChange}
+            />
         })
     }
      
     render() {
         return (
             <div className='tasks'>
-            <div className='tasks-header'>
-                    <button 
-                        className='button button-default'
-                        onClick={this.toggleForm}>
-                            + New TaskList
-                    </button>
-            </div>
-            {this.state.showNewCardForm && (
-                <form className='new-list-form'
-                onSubmit={this.onCreateTask}>
-                    <input
-                    className='full-width-input'
-                    type='text'
-                    value= {this.state.title}
-                    onChange={this.onTitleChange}
-                    placeholder='title' />
-                        <input
-                        className='full-width-input'
-                        value={this.state.description}
-                        onChange={this.onDescriptionChange}
-                        placeholder='description' />
-                    <button
-                        className='button'
-                        type='Submit'>
-                        Save
-                    </button>    
-                </form>
-            )}
+          <div className="tasks-header">
+          <button className="button button-default" onClick={this.toggleForm}>
+            + New task
+          </button>
+        </div>
+        {this.state.showNewCardForm &&
+          <form className="new-task-form" onSubmit={this.onCreateTask}>
+            <input
+              className="full-width-input"
+              onChange={this.onTitleChange}
+              value={this.state.title}
+              type="text"
+              placeholder="title"
+            />
+            <input
+              className="full-width-input"
+              onChange={this.onDescriptionChange}
+              value={this.state.description}
+              type="text"
+              placeholder="description"
+            />
+            <button className="button" type="submit">
+              Save
+            </button>
+          </form>}
+
                 <div className='task-lists'>
                     {this.renderTaskList()}
                 </div>
