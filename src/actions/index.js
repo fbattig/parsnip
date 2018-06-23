@@ -22,21 +22,36 @@ export function fetchTasks() {
     }
 }
 
-
-export function createTask({
-    title,
-    description
-}) {
+function createTaskSucceeded(task) {
     return {
-        type: 'CREATE_TASK',
-        payload: {
-            id: uniqueId(),
-            title,
-            description,
-            status: 'Unstarted',
-        }
-    };
+        type: 'CREATE_TASK_SUCCEEDED',
+        payload: task
+    }
 }
+export function createTask({title, description, status='Unstarted'}){
+    return dispatch => {
+        api.createTask({title,description,status})
+        .then(resp => {
+            dispatch(createTaskSucceeded(resp.data));
+        })
+    }
+
+}
+
+// export function createTask({
+//     title,
+//     description
+// }) {
+//     return {
+//         type: 'CREATE_TASK',
+//         payload: {
+//             id: uniqueId(),
+//             title,
+//             description,
+//             status: 'Unstarted',
+//         }
+//     };
+// }
 
 export function editTask(id, params = {}) {
     return {
