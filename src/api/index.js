@@ -16,3 +16,9 @@ export function fetchTasks() {
 export function createTask(params){
     return client.post('/tasks',params);
 }
+
+
+export function editTask(id, params){
+    return axios.put(`${API_BASE_URL}/tasks/${id}`, params);
+    // return client.put(`/tasks/${id}`, params);
+}

@@ -7,13 +7,17 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import tasks from './reducers';
+import tasksReducer from './reducers';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-
+const rootReducer = (state = {}, action) => {
+    return {
+      tasks: tasksReducer(state.tasks, action),
+    };
+  };
 const store = createStore(
-    tasks, 
+    rootReducer,
     composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(

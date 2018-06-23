@@ -49,53 +49,67 @@ class TasksPage extends Component {
 
 
 
-    renderTaskList(){
-        const {onStatusChange, tasks } = this.props;
-        return TASK_STATUSES.map(status => {
-            const statusTasks = tasks.filter(task => task.status === status);
-            return <TaskList 
-            key={status} 
-            status={status}
-            tasks ={statusTasks} 
-            onStatusChange = {onStatusChange}
-            />
-        })
-    }
+    // renderTaskList(){
+    //    // const {onStatusChange, tasks } = this.props;
+    //     return TASK_STATUSES.map(status => {
+    //         const statusTasks = this.props.tasks.filter(
+    //             task => task.status === status);
+    //         return (
+    //         <TaskList 
+    //             key={status} 
+    //             status={status}
+    //             tasks ={statusTasks} 
+    //             onStatusChange = {this.props.onStatusChange}
+    //         />
+    //         );
+    //     })
+    // }
      
     render() {
         return (
-            <div className='tasks'>
-          <div className="tasks-header">
-          <button className="button button-default" onClick={this.toggleForm}>
-            + New task
-          </button>
-        </div>
-        {this.state.showNewCardForm &&
-          <form className="new-task-form" onSubmit={this.onCreateTask}>
-            <input
-              className="full-width-input"
-              onChange={this.onTitleChange}
-              value={this.state.title}
-              type="text"
-              placeholder="title"
-            />
-            <input
-              className="full-width-input"
-              onChange={this.onDescriptionChange}
-              value={this.state.description}
-              type="text"
-              placeholder="description"
-            />
-            <button className="button" type="submit">
-              Save
-            </button>
-          </form>}
-
-                <div className='task-lists'>
-                    {this.renderTaskList()}
-                </div>
+            <div className="tasks">
+              <div className="tasks-header">
+                <button className="button button-default" onClick={this.toggleForm}>
+                  + New task
+                </button>
+              </div>
+              {this.state.showNewCardForm &&
+                <form className="new-task-form" onSubmit={this.onCreateTask}>
+                  <input
+                    className="full-width-input"
+                    onChange={this.onTitleChange}
+                    value={this.state.title}
+                    type="text"
+                    placeholder="title"
+                  />
+                  <input
+                    className="full-width-input"
+                    onChange={this.onDescriptionChange}
+                    value={this.state.description}
+                    type="text"
+                    placeholder="description"
+                  />
+                  <button className="button" type="submit">
+                    Save
+                  </button>
+                </form>}
+              <div className="task-lists">
+                {TASK_STATUSES.map(status => {
+                  const statusTasks = this.props.tasks.filter(
+                    task => task.status === status
+                  );
+                  return (
+                    <TaskList
+                      key={status}
+                      status={status}
+                      tasks={statusTasks}
+                      onStatusChange={this.props.onStatusChange}
+                    />
+                  );
+                })}
+              </div>
             </div>
-        );
+          );
     }
 }
 
