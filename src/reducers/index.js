@@ -1,33 +1,38 @@
-function tasks(state = {
-  tasks: []
-}, action) {
+
+const initialTasksState = {
+  tasks: [],
+  isLoading: false,
+  error: null,
+};
+
+
+function tasks(state = initialTasksState, action) {
   switch (action.type) {
-    // case 'CREATE_TASK':
-    //   {
-    //     return {
-    //       ...state,
-    //       tasks: state.tasks.concat(action.payload)
-    //     };
-    //   }
-    // case 'EDIT_TASK': {
-    //   const {
-    //     payload
-    //   } = action;
-    //   return {
-    //     tasks: state.tasks.map(task => {
-    //       if (task.id === payload.id) {
-    //         return Object.assign({}, task, payload.params);
-    //       }
-    //       return task;
-    //     }),
-    //   };
-    // }
+
+
+    case 'FETCH_TASKS_FAILED' :
+    {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload.error,
+      };
+    }
+
+    case 'FETCH_TASKS_STARTED':
+      {
+        return {
+          ...state,
+          isLoading: true,
+        }
+      }
 
     case 'FETCH_TASKS_SUCCEEDED':
       {
         return {
           ...state,
-          tasks: action.payload.tasks
+          tasks: action.payload.tasks,
+          isLoading: false
         };
       }
 
