@@ -48,6 +48,17 @@ function createTaskSucceeded(task) {
     payload: {
       task,
     },
+    meta: {
+      analytics: {
+        event: 'create_task',
+        data: {
+          id: task.id,
+          title: task.title,
+          description: task.description,
+          status: task.status,
+        }
+      }
+    }
   };
 }
 
