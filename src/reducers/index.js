@@ -31,7 +31,7 @@ function tasks(state = initialTasksState, action) {
       {
         return {
           ...state,
-          tasks: action.payload.tasks,
+          tasks: action.payload,
           isLoading: false
         };
       }

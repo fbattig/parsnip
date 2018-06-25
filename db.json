@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Learn Redux",
       "description": "The store, actions, and reducers, oh my!",
-      "status": "Unstarted"
+      "status": "In Progress"
     },
     {
       "id": 2,
@@ -16,61 +16,7 @@
       "id": 3,
       "title": "Json Server",
       "description": "New Stuf.",
-      "status": "Completed"
-    },
-    {
-      "title": "gfg",
-      "description": "gfhf",
-      "status": "In Progress",
-      "id": 4
-    },
-    {
-      "title": "ter",
-      "description": "rte",
-      "status": "In Progress",
-      "id": 5
-    },
-    {
-      "title": "working",
-      "description": "wotking good",
-      "status": "Unstarted",
-      "id": 6
-    },
-    {
-      "title": "sad",
-      "description": "sdsa",
-      "status": "Unstarted",
-      "id": 7
-    },
-    {
-      "title": "",
-      "description": "",
-      "status": "In Progress",
-      "id": 8
-    },
-    {
-      "title": "isLoading",
-      "description": "is Loading",
-      "status": "Unstarted",
-      "id": 9
-    },
-    {
-      "title": "test",
-      "description": "test",
-      "status": "Unstarted",
-      "id": 10
-    },
-    {
-      "title": "analytics",
-      "description": "analytics",
-      "status": "Unstarted",
-      "id": 11
-    },
-    {
-      "title": "3213",
-      "description": "2321",
-      "status": "Unstarted",
-      "id": 12
+      "status": "In Progress"
     }
   ]
 }

@@ -11,6 +11,7 @@ import tasksReducer from './reducers';
 
 import logger from './middleware/logger';
 import analytics from './middleware/analytics';
+import apiMiddleware from './middleware/api';
 
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -22,7 +23,7 @@ const rootReducer = (state = {}, action) => {
   };
 const store = createStore(
     rootReducer,
-    composeWithDevTools(applyMiddleware(thunk, logger, analytics)));
+    composeWithDevTools(applyMiddleware(thunk, apiMiddleware, logger, analytics)));
 
 ReactDOM.render(
 <Provider store={store}>
