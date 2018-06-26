@@ -39,7 +39,7 @@ function tasks(state = initialTasksState, action) {
       case 'CREATE_TASK_SUCCEEDED': {
         return {
           ...state,
-          tasks: state.tasks.concat(action.payload.task)
+          tasks: state.tasks.concat(action.payload)
         };
       }
      

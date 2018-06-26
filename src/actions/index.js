@@ -6,6 +6,11 @@ export const FETCH_TASKS_STARTED = 'FETCH_TASKS_STARTED';
 export const FETCH_TASKS_SUCCEEDED = 'FETCH_TASKS_SUCCEEDED';
 export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED';
 
+
+export const CREATE_TASK_STARTED = 'CREATE_TASK_STARTED';
+export const CREATE_TASK_SUCCEEDED = 'CREATE_TASK_SUCCEEDED';
+export const CREATE_TASK_FAILED = 'CREATE_TASK_FAILED';
+
 export function fetchTasks() {
   return {
     [CALL_API]: {
@@ -16,75 +21,26 @@ export function fetchTasks() {
 };
 
 
-// function fetchTasksSucceeded(tasks) {
-//   return {
-//     type: 'FETCH_TASKS_SUCCEEDED',
-//     payload: {
-//       tasks,
-//     },
-//   };
-// }
-
-// function fetchTasksFailed(error) {
-//   return {
-//     type: 'FETCH_TASKS_FAILED',
-//     payload: {
-//       error,
-//     },
-//   };
-// }
-
-// function fetchTasksStarted() {
-//   return {
-//     type: 'FETCH_TASKS_STARTED',
-//   };
-// }
-
-// export function fetchTasks() {
-//   return dispatch => {
-//     dispatch(fetchTasksStarted());
-
-//     api
-//       .fetchTasks()
-//       .then(resp => {
-//         setTimeout(() => {
-//           dispatch(fetchTasksSucceeded(resp.data));
-//         }, 2000)
-//       // throw new Error('Unable to fecth tasks!');
-//       })
-//       .catch(err => {
-//         dispatch(fetchTasksFailed(err.message));
-//       });
-//   };
-// }
-
-function createTaskSucceeded(task) {
+export function createTask({
+  title,
+  description,
+  status = 'Unstarted'
+}) {
   return {
-    type: 'CREATE_TASK_SUCCEEDED',
-    payload: {
-      task,
+    [CALL_API]: {
+      types: [CREATE_TASK_STARTED, CREATE_TASK_SUCCEEDED, CREATE_TASK_FAILED],
+      endpoint: '/tasks',
+      method: 'POST',
+      body: {
+        title,
+        description,
+        status,
+      },
     },
-    meta: {
-      analytics: {
-        event: 'create_task',
-        data: {
-          id: task.id,
-          title: task.title,
-          description: task.description,
-          status: task.status,
-        }
-      }
-    }
   };
 }
 
-export function createTask({ title, description, status = 'Unstarted' }) {
-  return dispatch => {
-    api.createTask({ title, description, status }).then(resp => {
-      dispatch(createTaskSucceeded(resp.data));
-    });
-  };
-}
+
 
 function editTaskSucceeded(task) {
   return {
