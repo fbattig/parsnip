@@ -1,45 +1,49 @@
 import * as api from '../api';
 
-function fetchTasksSucceeded(tasks) {
-  return {
-    type: 'FETCH_TASKS_SUCCEEDED',
-    payload: {
-      tasks,
-    },
-  };
-}
+// function fetchTasksSucceeded(tasks) {
+//   return {
+//     type: 'FETCH_TASKS_SUCCEEDED',
+//     payload: {
+//       tasks,
+//     },
+//   };
+// }
 
-function fetchTasksFailed(error) {
-  return {
-    type: 'FETCH_TASKS_FAILED',
-    payload: {
-      error,
-    },
-  };
-}
+// function fetchTasksFailed(error) {
+//   return {
+//     type: 'FETCH_TASKS_FAILED',
+//     payload: {
+//       error,
+//     },
+//   };
+// }
 
-function fetchTasksStarted() {
-  return {
-    type: 'FETCH_TASKS_STARTED',
-  };
-}
+// function fetchTasksStarted() {
+//   return {
+//     type: 'FETCH_TASKS_STARTED',
+//   };
+// }
 
-export function fetchTasks() {
-  return dispatch => {
-    dispatch(fetchTasksStarted());
+// export function fetchTasks() {
+//   return dispatch => {
+//     dispatch(fetchTasksStarted());
 
-    api
-      .fetchTasks()
-      .then(resp => {
-        setTimeout(() => {
-          dispatch(fetchTasksSucceeded(resp.data));
-        }, 2000)
-      // throw new Error('Unable to fecth tasks!');
-      })
-      .catch(err => {
-        dispatch(fetchTasksFailed(err.message));
-      });
-  };
+//     api
+//       .fetchTasks()
+//       .then(resp => {
+//         setTimeout(() => {
+//           dispatch(fetchTasksSucceeded(resp.data));
+//         }, 2000)
+//       // throw new Error('Unable to fecth tasks!');
+//       })
+//       .catch(err => {
+//         dispatch(fetchTasksFailed(err.message));
+//       });
+//   };
+// }
+
+export function fetchTasks(){
+  return {type: 'FETCH_TASKS_STARTED'};
 }
 
 function createTaskSucceeded(task) {
