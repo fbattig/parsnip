@@ -46,6 +46,9 @@ class TasksPage extends Component {
     toggleForm = ()=>{
         this.setState({showNewCardForm: !this.state.showNewCardForm});
     }
+    onSearch = e => {
+        console.log('Search term : ', e.target.value);
+    }
      
     render() {
         if (this.props.isLoading) {
@@ -59,6 +62,9 @@ class TasksPage extends Component {
         return (
             <div className="tasks">
               <div className="tasks-header">
+              <input onChange={this.onSearch}
+              type='text'
+              placeholder='Search' />
                 <button className="button button-default" onClick={this.toggleForm}>
                   + New task
                 </button>
