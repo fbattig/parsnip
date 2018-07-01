@@ -47,8 +47,29 @@ class TasksPage extends Component {
         this.setState({showNewCardForm: !this.state.showNewCardForm});
     }
     onSearch = e => {
-        console.log('Search term : ', e.target.value);
+       this.props.onSearch(e.target.value);
+    };
+
+
+    renderTaskLists() {
+        const { onStatusChange, tasks } = this.props;
+        
+        // const filteredTasks = tasks.filter( task => {
+        //     return task.title.match(new RegExp(this.state.searchTerm, 'i'));
+        // });
+        return TASK_STATUSES.map( status => {
+            const statusTasks = tasks.filter( task => task.status === status);
+            return (
+                <TaskList 
+                key={status}
+                status={status}
+                tasks={statusTasks}
+                onStatusChange = {onStatusChange}
+                 />
+            );
+        });
     }
+
      
     render() {
         if (this.props.isLoading) {
@@ -90,19 +111,7 @@ class TasksPage extends Component {
                   </button>
                 </form>}
               <div className="task-lists">
-                {TASK_STATUSES.map(status => {
-                  const statusTasks = this.props.tasks.filter(
-                    task => task.status === status
-                  );
-                  return (
-                    <TaskList
-                      key={status}
-                      status={status}
-                      tasks={statusTasks}
-                      onStatusChange={this.props.onStatusChange}
-                    />
-                  );
-                })}
+                    {this.renderTaskLists()}
               </div>
             </div>
           );

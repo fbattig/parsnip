@@ -3,6 +3,7 @@ const initialState = {
   tasks: [],
   isLoading: false,
   error: null,
+  searchTerm: ' ',
 };
 
 export default function tasks(state = initialState, action) {
@@ -58,6 +59,13 @@ export default function tasks(state = initialState, action) {
       return {
         ...state,
         tasks: nextTasks,
+      };
+    }
+
+    case 'FILTER_TASKS':{
+      return {
+        ...state,
+        searchTerm: action.payload.searchTerm
       };
     }
     default: {
