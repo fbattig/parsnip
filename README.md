@@ -38,3 +38,5 @@ npm install -D enzyme                     =
 
 npm install redux-saga 
 
+npm install  reselect
+

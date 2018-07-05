@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TaskList from './TaskList';
 
-const  TASK_STATUSES =['Unstarted', 'In Progress', 'Completed'];
+//const  TASK_STATUSES =['Unstarted', 'In Progress', 'Completed'];
 
 class TasksPage extends Component {
     
@@ -57,13 +57,17 @@ class TasksPage extends Component {
         // const filteredTasks = tasks.filter( task => {
         //     return task.title.match(new RegExp(this.state.searchTerm, 'i'));
         // });
-        return TASK_STATUSES.map( status => {
-            const statusTasks = tasks.filter( task => task.status === status);
-            return (
+      //  return TASK_STATUSES.map( status => {
+     //       const statusTasks = tasks.filter( task => task.status === status);
+      
+     return Object.keys(tasks).map(status => {
+        const tasksByStatus = tasks[status];
+  
+     return (
                 <TaskList 
                 key={status}
                 status={status}
-                tasks={statusTasks}
+                tasks={tasksByStatus}
                 onStatusChange = {onStatusChange}
                  />
             );
